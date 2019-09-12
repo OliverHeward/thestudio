@@ -1,0 +1,662 @@
+/*--------------------------------------------------------------
+# Page Templates
+--------------------------------------------------------------*/
+
+// Removing wpmenu
+#wpadminbar {
+    display: none!important;
+}
+
+/* Front page */
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+h1, h2 {
+    @include tablet {
+        font-size: 2.5rem;
+    }
+}
+
+html, body {
+    line-height: 1.4;
+}
+
+header.site-header {
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    z-index: 2000;
+    transition: all .5s ease;
+    &.scrolled {
+        @include desktop {
+            background-color: #fff;
+            .desktop-menu .menu-menu-container .menu-item a {
+                color: #252525 !important;
+                transition: all .5s ease;
+                text-shadow: none !important;
+            }
+        }
+    }
+
+    nav.main-navigation {
+        clear: both;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        width: 100%;
+        height: 50px;
+        max-width: 1300px;
+        position: relative;
+        background-color: transparent;
+
+        @include desktop {
+            justify-content: flex-end;
+        }
+        .ham-menu {
+            position: absolute;
+            top: 2px;
+            right: 10px;
+            width: 45px;
+            height: 45px;
+            
+            @include desktop {
+                display: none!important;
+            }
+        }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.open {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            background-color: #252525;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            @include desktop {
+                display: none !important;
+            }
+
+            .close-menu {
+                width: 45px;
+                height: 45px;
+                position: absolute;
+                top: 5px;
+                right: 10px;
+            }
+
+            .menu {
+                margin-top: 15%;
+                list-style: none;
+                margin: 0;
+                padding-left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column nowrap;
+                height: 70vh;
+
+                li {
+                    margin: 30px 0;
+                    text-transform: uppercase;
+                    
+                    a {
+                        font-size: 1.5rem;
+                        color: #fff;
+                        transition: all .5s ease;
+
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            color: goldenrod;
+                        }
+                    }
+                }
+            }
+        
+                li:hover > ul,
+                li.focus > ul {
+                    left: auto;
+                }
+            }
+            .desktop-menu {
+                display: none;
+                @include desktop {
+                    display: block;
+                    margin-right: 5%;
+                    div.menu-menu-container {
+                        width: 100%;
+                        ul.menu {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            li {
+                                margin: 10px;
+
+                                a {
+                                    color: #fff;
+                                    text-shadow: 0 0 3px #252525;
+                                    font-size: 1.2rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            }
+            li {
+                float: left;
+                position: relative;
+        
+                &:hover > a,
+                &.focus > a {
+                }
+            }
+            a {
+                display: block;
+                text-decoration: none;
+            }
+        
+            .current_page_item > a,
+            .current-menu-item > a,
+            .current_page_ancestor > a {
+            }
+        }
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+.home {
+    .site-content {
+        section:not(.hero) {
+            padding: 30px 0;
+        }
+        section.hero {
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+
+            div.hero-slide {
+                height: inherit;
+                width: 100%;
+                background-blend-mode: unset;
+
+                .slick-track {
+                    height: inherit;
+                }
+                .slick-list {
+                    height: inherit;
+                }
+                ul.slick-dots {
+                    position: absolute;
+                    margin: 0;
+                    padding: 0;
+                    margin-top: 20px;
+                    margin-left: 25px;
+                    top: 0;
+                    left: 0;
+                    list-style: none;
+
+                    li {
+                        display: inline-block;
+                        padding: 0 5px;
+
+                        button {
+                            font-size: 0;
+                            line-height: 0;
+                            display: block;
+                            padding: 5px;
+                            cursor: pointer;
+                            background-color: transparent;
+                            border: 0;
+                            outline: none;
+                            background: transparent;
+                            border-radius: 50%;
+                            width: 15px;
+                            height: 15px;
+                            box-shadow: none;
+                            border: 2px solid #fff;
+                        }
+                    }
+                    li.slick-active {
+                        button {
+                            background-color: #252525;
+                            border: 2px solid #252525;
+                        }
+                    }
+                }
+            }
+        }
+
+        div.hero-text {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            padding: 30px 5%;
+            max-width: 500px;
+            margin: 0 auto;
+            color: #fff;
+            h1.hero-title {
+                text-transform: uppercase;
+                font-size: 2.5rem;
+                line-height: 1;
+                @include tablet {
+                    font-size: 3.5rem;
+                }
+            }
+            h2.hero-subtitle {
+                font-size: 1rem;
+                font-weight: lighter;
+                margin: 0 auto;
+                @include tablet {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        section.about {
+            .container {
+                @include tablet {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-flow: row;
+                    width: 100%;
+                }
+                .profile-container {
+                    @include tablet {
+                        padding: 20px 10px;
+                        width: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-flow: column nowrap;
+                    }
+                    h2.about-title {
+                        text-transform: uppercase;
+                        color: #000;
+                        font-size: 2.5rem;
+                        line-height: .8;
+                        margin-bottom: 20px;
+                        @include tablet {
+                            font-size: 2.75rem;
+                            line-height: .9;
+                            max-width: 300px;
+                        }
+        
+                        span{
+                            font-size: 1.5rem;
+                            color: #252525;
+                            @include tablet {
+                                font-size: 2.3rem;
+                            }
+                        }
+                    }
+                    div.about-image {
+                        max-width: 400px;
+                        max-height: 400px;
+                        overflow: hidden;
+                        border-radius: 0px 25% 0px 25%;
+                        margin-bottom: 20px;
+                        @include tablet {
+                            max-width: unset;
+                            max-height: unset;
+                            width: 320px;
+                            height: 320px;
+                        }
+                        img {
+        
+                        }
+                    }
+                }
+
+                div.about-bio {
+                    @include tablet {
+                        width: 50%;
+                        padding: 20px 10px;
+                    }
+                    @include desktop {
+                        padding-right: 10%;
+                    }
+                    h3.about-title {
+                        font-size: 1.7rem;
+                        color: #000;
+                        margin-top: 20px;
+                        text-transform: uppercase;
+
+                        @include tablet {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        section.services {
+            background-color: #eee;
+            padding: 50px 5px;
+            h1 {
+                text-transform: uppercase;
+                color: #000;
+                @include tablet {
+                    text-align: center;
+                    font-size: 3rem;
+                    margin: 0 0 1rem;
+                }
+            }
+            p {
+                @include tablet {
+                    width: 70%;
+                    max-width: 650px;
+                    margin: 0 auto;
+                }
+            }
+            .services-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: row wrap;
+                padding: 40px 0;
+                @include desktop {
+                    max-width: 900px;
+                    margin: 0 auto;
+                }
+                .service-wrapper {
+                    max-width: 300px;
+                    max-height: 300px;
+                    width: 90%;
+                    transition: all .3s ease;
+                    margin: 2%;
+                    position: relative;
+                    cursor: pointer;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        transform: scale(1.05);
+                    }
+                    div.image-wrap {
+                        background-color: #000;
+                        border-radius: 15%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            border-radius: 15%;
+                            height: auto;
+                            width: auto;
+                            opacity: .95;
+                        }
+                    }
+
+                    h3 {
+                        width: 70%;
+                        position: absolute;
+                        text-transform: uppercase;
+                        font-size: 1.5rem;
+                        letter-spacing: 5px;
+                        text-align: center;
+                        color: #fff;
+                        text-shadow: 0 1px 4px #000;
+                        @include tablet {
+                            font-size: 1.75rem;
+                            width: 90%;
+                        }
+                    }
+                }
+            }
+        }
+        section.portfolio {
+            h1 {
+                text-align: left;
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                line-height: .8;
+                margin: 1rem 0 2rem;
+
+                @include tablet {
+                    text-align: center;
+                    font-size: 2rem;
+                }
+
+                span {
+                    font-size: 2.5rem;
+                    @include tablet {
+                        font-size: 3rem;
+                    }
+                }
+            }
+
+            div.wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+            div.portfolio-slider {
+                height: 400px;
+                box-sizing: border-box;
+                width: 100%;
+                @include desktop {
+                    height: 500px;
+                    width: 80%;
+                    max-width: 1100px;
+                    margin: 0 auto;
+                }
+
+                    .slick-list.draggable {
+                        height: 400px;
+                        @include desktop {
+                            height: 500px;
+                        }
+
+                        .slick-track {
+                            height: 400px;
+                            @include desktop {
+                                height: 500px;
+                            }
+                            .portfolio-slide {
+                                background-position: center;
+                                background-size: cover;
+                                opacity: .9;
+                            }
+                        }
+
+                    }
+                }
+            div.text-overlay {
+                position: absolute; 
+                top: 50%;
+                text-align: center;
+                left: 0; 
+                right: 0; 
+                margin-left: auto; 
+                margin-right: auto; 
+                width: 300px;
+                text-transform: uppercase;
+                opacity: 1;
+                    h1 {
+                        text-shadow: 0 1px 4px #000;
+                        margin-bottom: 30px;
+    
+                        span {
+                            font-size: 3rem;
+                            line-height: 1;
+    
+                        }
+                    }
+                    a {
+                        padding: 10px 30px;
+                        background-color: transparent;
+                        border: 1px solid #fff;
+                        text-decoration: none;
+                        color: #fff;
+                        transition: all .3s ease;
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            transform: scale(1.1);
+                            padding: 12px 37px;
+                            font-size: 1.1rem;
+                            background-color: #252525;
+                            border: 1px solid #252525;
+                        }
+                    }
+                }
+        }
+    }
+}
+
+// ABOUT ME PAGE
+.page-id-8 {
+    .entry-header {
+        padding: 50px 0 0;
+        .container {
+            text-transform: uppercase;
+            max-width: 800px;
+            h1 {
+                font-size: 2.5rem;
+                line-height: .8;
+                margin-bottom: 40px;
+
+                @include tablet {
+                    font-size: 3rem;
+                }
+                span {
+                    font-size: 1.75rem;
+                    @include tablet {
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+            .image-container {
+                margin-bottom: 40px;
+                max-width: 400px;
+                max-height: 400px;
+            }
+        }
+    }
+
+    .about-section {
+        max-width: 800px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+}
+
+// PORTFOLIO 
+.page-id-12 {
+    .entry-header {
+        padding: 50px 0 0;
+        .container {
+            text-transform: uppercase;
+            max-width: 800px;
+            h1 {
+                font-size: 2.5rem;
+                line-height: .8;
+                margin-bottom: 40px;
+                span {
+                    font-size: 1.75rem;
+                }
+            }
+        }
+    }
+    section.filter-section {
+        margin-bottom: 40px;
+        .container {
+            div.filter-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: row wrap;
+                div.filter {
+                    max-width: 155px;
+                    text-transform: uppercase;
+                    font-size: 1rem;
+                    width: 90%;
+                    text-align: center;
+                    border: 2px solid #252525;
+                    height: auto;
+                    margin: 2%;
+                    padding: 5px;
+                    transition: all .4s ease;
+                    cursor: pointer;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        transform: scale(1.1);
+                        background-color: #252525;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    section.portfolio-grid {
+        margin-bottom: 40px;
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: row wrap;
+            .item-wrapper {
+                width: 80%;
+                max-width: 400px;
+                position: relative;
+                height: 100%;
+                margin: 2%;
+                transition: all .3s ease;
+                cursor: pointer;
+                &:hover,
+                &:active,
+                &:focus {
+                    transform: scale(1.1);
+                    opacity: .9;
+                    transition: all .3s ease;
+
+                    .text-shadow {
+                        display: block;
+                        transition: all .3s ease;
+                    }
+                }
+                @media screen and (min-width: 600px) {
+                    max-width: 250px;
+                }
+                img {
+
+                }
+                .text-shadow {
+                    display: none;
+                    position: absolute;
+                    background-color: rgba(0,0,0,0.5);
+                    top: 40%;
+                    text-align: center;
+                    left: 0;
+                    right: 0;
+                    margin-left: auto;
+                    margin-right: auto;
+                    color: white;
+                    transition: all .3s ease;
+                    font-size: 1.1rem;
+                    padding: 10px 0;
+
+                    p {
+                        letter-spacing: 3px;
+                    }
+                }
+
+            }
+        }
+    }
+}
