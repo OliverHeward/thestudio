@@ -31,36 +31,34 @@ get_header(); ?>
 
             <section class="portfolio-grid">
                 <div class="container">
-                    <div class="item-wrapper Microblading">
-                        <img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg">
-                        <div class="text-shadow">
-                            <p>Microblading</p>
-                        </div>
+                    <div id="modal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-image" id="img">
                     </div>
-                    <div class="item-wrapper Weddings">
-                        <img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg">
-                        <div class="text-shadow">
-                            <p>Weddings</p>
+                <?php 
+                    $args = array (
+                            'posts_per_page' => -1,
+                            'post_type' => 'gallery',
+                            'post_status' => 'publish',
+                    );
+                    $query = new WP_Query($args);
+                    if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); { ?>
+                    <?php $cat = get_the_category(); ?>
+                        <div class="item-wrapper Microblading" data-title="<?php echo the_title();?>" data-type="<?php echo $cat[0]->cat_name;?>">
+                            <img src="<?php the_post_thumbnail_url();?>" id="theImage">
+                            <div class="text-shadow">
+                                <p><?php echo the_title(); ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-wrapper Theatrical">
-                        <img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg">
-                        <div class="text-shadow">
-                            <p>Theatrical</p>
-                        </div>
-                    </div>
-                    <div class="item-wrapper Special Occasion">
-                        <img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg">
-                        <div class="text-shadow">
-                            <p>Special Occasion</p>
-                        </div>
-                    </div>
+                         <?php } 
+                        endwhile; endif;
+                        wp_reset_postdata(); ?>
                 </div>
             </section>
 
 			<?php endwhile; // End of the loop. ?>
 
 		</main><!-- #main -->
-	</div><!-- #primary -->
+    </div><!-- #primary -->
 
 <?php get_footer(); ?>

@@ -23,14 +23,22 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<?php $hero = get_field('hero_banner');
+				$content = $hero['slider'];
+				?>
 
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );?>
 					<!-- Hero Section -->
 					<section class="hero">
 						<div class="hero-slide">
-							<div class="slide" style="background-image: url('<?php echo $thumb['0'];?>'),linear-gradient(-180deg, rgba(255, 255, 255, 0.6), rgba(0,0,0,0.5)); background-size: cover; background-position: center; background-blend-mode: multiply;"></div>
-							<div class="slide" style="background-image: url('<?php echo $thumb['0'];?>'),linear-gradient(-180deg,rgba(255, 255, 255, 0.6), rgba(0,0,0,0.5)); background-size: cover; background-position: center; background-blend-mode: multiply;"></div>
-							<div class="slide" style="background-image: url('<?php echo $thumb['0'];?>'),linear-gradient(-180deg, rgba(255, 255, 255, 0.6), rgba(0,0,0,0.5)); background-size: cover; background-position: center; background-blend-mode: multiply;"></div>
+							<?php 
+								$hero_images = $content;
+								if($hero_images) {
+									foreach($hero_images as $image) { ?>
+										<div class="slide" style="background-image: url('<?php echo $image['image']['url']; ?>'),linear-gradient(-180deg, rgba(255, 255, 255, 0.6), rgba(0,0,0,0.5)); background-size: cover; background-position: center; background-blend-mode: multiply;"></div>
+									<?php }
+								}
+							?>
 						</div>
 						<div class="hero-text">
 							<h1 class="hero-title">The Studio</h1>
@@ -61,30 +69,22 @@ get_header(); ?>
 						<h1>Services</h1>
 						<p>Below are the services that I provide, If something is missing you are looking for or would like some information on my services, please feel free to contact me.</p>
 						<div class="services-box">
-							<div class="service-wrapper">
-								<div class="image-wrap">
-									<img src="<?php echo get_template_directory_uri();?>/assets/images/micro3.png" class="service-image"/>
-									<h3>Microblading</h3>
-								</div>
-							</div>
-							<div class="service-wrapper">
-								<div class="image-wrap">
-									<img src="<?php echo get_template_directory_uri();?>/assets/images/weddings.jpg" class="service-image"/>
-									<h3>Weddings</h3>
-								</div>
-							</div>
-							<div class="service-wrapper">
-								<div class="image-wrap">
-									<img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg" class="service-image"/>
-									<h3>Special Occasion</h3>
-								</div>
-							</div>
-							<div class="service-wrapper">
-								<div class="image-wrap">
-									<img src="<?php echo get_template_directory_uri();?>/assets/images/skull.jpg" class="service-image"/>
-									<h3>Theatrical</h3>
-								</div>
-							</div>
+								<?php $args = array(
+									'posts_per_page' => 4,
+									'post_type' => 'services',
+									'post_status' => 'publish',
+								);
+								$query = new WP_Query($args);
+								if($query->have_posts()) : while($query->have_posts()) : $query->the_post(); { ?>
+								<a href="<?php echo the_permalink();?>" class="service-link"> 
+									<div class="service-wrapper" style="background-image: url('<?php echo the_post_thumbnail_url();?>')">
+											<h3><?php echo the_title();?></h3>
+									</div>
+								</a>
+								<?php }
+								endwhile; endif;
+								wp_reset_postdata();
+								?>
 						</div>
 					</section>
 					<section class="portfolio">
@@ -93,13 +93,20 @@ get_header(); ?>
 						</div>
 						<div class="wrapper">
 							<div class="portfolio-slider">
-								<div class="portfolio-slide" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/skull.jpg')">
-								</div>
-								<div class="portfolio-slide" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/skull.jpg')">
-								<div class="portfolio-slide" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/skull.jpg')"></div>
+								<?php $args = array(
+									'posts_per_page' => 4,
+									'post_type' => 'gallery',
+									'post_status' => 'publish',
+								);
+								$query = new WP_Query($args);
+								if($query->have_posts()) : while($query->have_posts()) : $query->the_post(); { ?>
+									<div class="portfolio-slide" style="background-image: url('<?php echo the_post_thumbnail_url();?>')"></div>
+								<?php }
+								endwhile; endif;
+								wp_reset_postdata(); ?>
 							</div>
 							<div class="text-overlay">
-								<a href="#">view all</a>
+								<a href="portfolio">view all</a>
 							</div>
 						</div>
 					</section>
